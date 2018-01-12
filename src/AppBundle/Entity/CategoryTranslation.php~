@@ -5,11 +5,13 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
+
 /**
  * @ORM\Entity()
  */
-class ProductTranslation
+class CategoryTranslation
 {
+
     //traits doctrine behaviours
     use ORMBehaviors\Translatable\Translation;
     use ORMBehaviors\Sluggable\Sluggable;
@@ -17,7 +19,7 @@ class ProductTranslation
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=150)
+     * @ORM\Column(name="name", type="string", length=150, unique=true)
      */
     private $name;
 
@@ -33,7 +35,7 @@ class ProductTranslation
      *
      * @param string $name
      *
-     * @return Product
+     * @return Category
      */
     public function setName($name)
     {
@@ -52,13 +54,12 @@ class ProductTranslation
         return $this->name;
     }
 
-
     /**
      * Set description
      *
      * @param string $description
      *
-     * @return Product
+     * @return Category
      */
     public function setDescription($description)
     {
@@ -79,7 +80,8 @@ class ProductTranslation
 
     public function getSluggableFields()
     {
+        //on ne veut sluggifier que le nom category
         return [ 'name' ];
     }
-
 }
+

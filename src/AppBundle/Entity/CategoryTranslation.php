@@ -84,4 +84,3 @@ class CategoryTranslation
         return [ 'name' ];
     }
 }
-

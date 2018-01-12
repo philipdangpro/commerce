@@ -21,7 +21,7 @@ class CategoryFixtures extends Fixture
         for($i = 0; $i < 4; $i++) {
 
             // cibler les propriétés non traduites
-            $categorie = new Category();
+            $entity = new Category();
 
             foreach($this->locales as $key => $value) {
 
@@ -38,15 +38,18 @@ class CategoryFixtures extends Fixture
                 $description = $faker->realText();
 
                 // méthode translate est fourni par doctrine behaviors
-                $categorie->translate($key)->setName($name . $i);
-                $categorie->translate($key)->setDescription($description);
+                $entity->translate($key)->setName($name . $i);
+                $entity->translate($key)->setDescription($description);
             }
 
             //méthode mergeNewTranslations est fourni par doctrine behaviors
 
-            $categorie->mergeNewTranslations();
+            $entity->mergeNewTranslations();
 
-            $manager->persist($categorie);
+            //stocker les catégories en mémoire
+            $this->addReference("category$i", $entity);
+
+            $manager->persist($entity);
         }
 
         $manager->flush();
