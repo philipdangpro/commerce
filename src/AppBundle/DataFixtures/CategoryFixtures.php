@@ -1,39 +1,56 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: wabap2-13
+ * Date: 12/01/18
+ * Time: 12:22
+ */
 
-namespace AppBundle\DataFixtures;
+namespace  AppBundle\DataFixtures;
 
 use AppBundle\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-//use Doctrine\ORM\EntityManager;
 
 class CategoryFixtures extends Fixture
 {
-    private $locales = ['en', 'fr'];
+    private $locales = ['en' => 'en_US', 'fr' => 'fr_FR'];
 
     public function load(ObjectManager $manager)
     {
-        foreach ($this->locales as $key => $value){
-            for ($i = 0; $i < 4; $i++){
-                $entity = new Category();
-                $name = ($value === 'fr') ? 'catégorie' : 'category';
-                $description = ($value === 'fr') ? 'descriptionenglish' : 'description';
+        for($i = 0; $i < 4; $i++) {
 
-                $entity->translate($value)->setName($name . $i);
-                $entity->translate($value)->setDescription($description. $i);
+            // cibler les propriétés non traduites
+            $categorie = new Category();
 
-                // In order to persist new translations, call mergeNewTranslations method, before flush
-                //méthode translate est fournie par doctrine behaviours
-                $entity->mergeNewTranslations();
+            foreach($this->locales as $key => $value) {
 
-                $manager->persist($entity);
+                // use the factory to create a Faker\Generator instance
+                $faker = \Faker\Factory::create($value);
 
+
+
+
+                //créer des valeurs traduits pour les propriétés
+                $name = ($key === 'fr') ? 'catégorie' : 'category';
+                //$description = ($value === 'fr') ? 'description' : 'description';
+
+                $description = $faker->realText();
+
+                // méthode translate est fourni par doctrine behaviors
+                $categorie->translate($key)->setName($name . $i);
+                $categorie->translate($key)->setDescription($description);
             }
+
+            //méthode mergeNewTranslations est fourni par doctrine behaviors
+
+            $categorie->mergeNewTranslations();
+
+            $manager->persist($categorie);
         }
 
         $manager->flush();
+
+
     }
-
-
-
 }
