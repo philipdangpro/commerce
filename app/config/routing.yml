@@ -1,0 +1,8 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+    #on prefixe toutes nos routes par la _locale,
+    #si la valeur de _locale est différente de en|fr, on aura une erreur 404
+    prefix: /{_locale}
+    requirements:
+        _locale: en|fr
