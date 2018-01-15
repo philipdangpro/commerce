@@ -10,4 +10,59 @@ namespace AppBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNRandomProductsByCategory($locale)
+    {
+        //la zone de suggestion affiche trois produits aléatoires
+        $results = $this
+            ->createQueryBuilder('p')
+            ->join('p.translations','p_translations')
+            ->select('p_translations.name, p.price, p.image')
+            ->where('p_translations.locale = :param1')
+            ->setParameters([
+                'param1' => $locale
+            ])
+            ->orderBy('RAND()')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $results;
+    }
+
+    public function getProductsByCat ($locale, $id)
+    {
+        $results = $this
+            ->createQueryBuilder('p')
+            ->join('p.translations', 'p_trans')
+            ->join('p.category', 'p_cat')
+            ->select('p_trans.name, p_trans.description, p.price, p.image, p_cat.id as p_cat_id, p.id as p_id')
+            ->where('p_trans.id = :param1')
+            ->andWhere('p_trans.locale = :param2')
+            ->setParameters([
+                'param1' => $id,
+                'param2' => $locale
+            ])
+            ->getQuery()
+            ->getResult();
+
+        return $results;
+    }
+
+    public function getInfo($locale, $slug)
+    {
+        $result = $this
+            ->createQueryBuilder('p')
+            ->join('p.translations', 'p_t')
+            ->select('p_t.name, p_t.description, p.image, p.price')
+            ->where('p_t.slug = :param1')
+            ->setParameters([
+                'param1' => $slug
+            ])
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+
+        return $result;
+    }
 }

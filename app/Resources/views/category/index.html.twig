@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ dump(products) }}
+    {#{{ dump(categories.products) }}#}
+    <div class="row my-4">
+        <div class="col">
+            <h1 class="mb-4">Category</h1>
+            <div class="row">
+                <div class="col-sm-4 mb-5">
+                    {% for key, value in products %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="{{ asset(value.image) }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-sm-8">
+                            <h3>{{ value.name }} {{ value.p_id }}</h3>
+                            <p class="h5 my-2">{{ value.price }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="my-1">{{ value.description | truncate(32) }}</p>
+                            <p>
+                                <a href="#" class="btn btn-primary">
+                                    <span class="fas fa-eye"></span>
+                                    Consult
+                                </a>
+                            </p>
+                        </div>
+
+                    </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

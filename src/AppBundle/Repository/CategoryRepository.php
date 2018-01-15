@@ -10,4 +10,23 @@ namespace AppBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getCategoriesByLocaleWithProductsCount($locale)
+    {
+        $results = $this
+            ->createQueryBuilder('c')
+            ->join('c.translations','c_translations')
+            ->join('c.products', 'c_products')
+            ->select('count(c_products.id) AS nb_products, c_translations.name AS cat_trad')
+            ->groupBy('c_translations.name')
+            ->where('c_translations.locale = :param1')
+            ->setParameters([
+                'param1' => $locale
+            ])
+            ->getQuery()
+            ->getResult();
+
+        return $results;
+    }
+
+
 }
