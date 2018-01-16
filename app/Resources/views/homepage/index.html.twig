@@ -3,55 +3,35 @@
 {% block body %}
     <div class="row my-4">
         <div class="col">
-            <h1 class="mb-4">{{ 'homepage.categories' | trans | capitalize }}</h1>
-            {{ dump(categories) }}
+            <h1 id="phpunit" class="mb-4">{{ 'homepage.categories' | trans | capitalize }}</h1>
+            {#{{ dump(categories) }}#}
             <p>
                 {% for categorie in categories %}
-                <a href="{{ url('category.index') }}" class="btn btn-primary">
+                <a href="#" class="btn btn-primary">
                     {{ categorie.cat_trad }} <span class="badge badge-light">{{ categorie.nb_products }}</span>
                 </a>
                 {% endfor %}
             </p>
         </div>
     </div>
-    {{ dump(rndprod) }}
+
     <div class="row my-4">
         <div class="col">
             <h1>Need ideas ?</h1>
             <div class="row">
-                <div class="col-sm-4">
-                    <h2>Product</h2>
-                    <img src="img/400x400.jpg" class="img-fluid" alt="">
-                    <p class="h5 my-2">99,99€</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">
-                            <span class="fas fa-eye"></span>
-                            Consult
-                        </a>
-                    </p>
-                </div>
-                <div class="col-sm-4">
-                    <h2>Product</h2>
-                    <img src="img/400x400.jpg" class="img-fluid" alt="">
-                    <p class="h5 my-2">99,99€</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">
-                            <span class="fas fa-eye"></span>
-                            Consult
-                        </a>
-                    </p>
-                </div>
-                <div class="col-sm-4">
-                    <h2>Product</h2>
-                    <img src="img/400x400.jpg" class="img-fluid" alt="">
-                    <p class="h5 my-2">99,99€</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">
-                            <span class="fas fa-eye"></span>
-                            Consult
-                        </a>
-                    </p>
-                </div>
+                {% for prod in rndprod %}
+                    <div class="col-sm-4">
+                        <h2>{{ prod.name }}</h2>
+                        <img src="{{ asset(prod.image) }}" class="img-fluid" alt="">
+                        <p class="h5 my-2">{{ prod.price | localizedcurrency('EUR') }}€</p>
+                        <p>
+                            <a href="{{ url('homepage.product', {'slug' : prod.slug}) }}" class="btn btn-primary">
+                                <span class="fas fa-eye"></span>
+                                Consult
+                            </a>
+                        </p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

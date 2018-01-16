@@ -1,11 +1,50 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
-
+    # ~ signifie null en yaml
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    admin:
+                        password: $2y$12$S/wzXpAz52g3QM1wch5Age.8NS/G7bDMXgKr2UADDqzXzg1APF8Cy
+                        roles: ROLE_ADMIN
+                    nomdadmin:
+                        password: passworddadmin
+                        roles: ROLE_ADMIN
+        our_db_provider:
+            entity:
+                class: AppBundle\Entity\User
+                property: username
+
+        #créer un provider regroupant les autres providers,
+        #chain et providers sont des mots spéciaux
+        all_providers:
+            chain:
+                providers: [ in_memory, our_db_provider]
+
+
+    #encoders : hachage utilisé par les mots de passe
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
+        #cryptage pour le mot de passe des users
+        AppBundle\Entity\User:
+              algorithm: bcrypt
+
+    # role_hierarchy : clé hérite des privilèges de la valeur
+    #par ex. ROLE_ADMIN hérite de ROLE_USER
+    role_hierarchy:
+#        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_ADMIN: ROLE_USER
+
+#espace pair = clé de fichier yaml
+# - = array de yaml
+# {objet de yaml}
+    access_control:
+        - { path: ^/(fr|en)/admin, roles: ROLE_ADMIN}
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -18,7 +57,21 @@ security:
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #ouvre une petite popup js pour se déconnecter
             #http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+            #login_path et check_path ciblent le nom d'une route
+            #default_target_path: page d'atterrissage
+            form_login:
+                login_path: security.login
+                check_path: security.login
+                default_target_path: admin.homepage.index
+            #path : nom de la route de déconnexion
+            #target : page d'atterrissage après déconnexion
+            logout:
+                path: security.logout
+                target: /
+
+            #utiliser le regroupment de providers
+            provider: all_providers

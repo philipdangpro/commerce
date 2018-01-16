@@ -16,7 +16,7 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
         $results = $this
             ->createQueryBuilder('p')
             ->join('p.translations','p_translations')
-            ->select('p_translations.name, p.price, p.image')
+            ->select('p_translations.name, p.price, p.image, p_translations.slug')
             ->where('p_translations.locale = :param1')
             ->setParameters([
                 'param1' => $locale

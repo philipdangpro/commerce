@@ -2,11 +2,12 @@
 
 {% block body %}
 
+    {{ dump(category) }}
     {{ dump(products) }}
     {#{{ dump(categories.products) }}#}
     <div class="row my-4">
         <div class="col">
-            <h1 class="mb-4">Category</h1>
+            <h1 class="mb-4">Category name</h1>
             <div class="row">
                 <div class="col-sm-4 mb-5">
                     {% for key, value in products %}
@@ -31,7 +32,7 @@
                         </div>
 
                     </div>
-                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

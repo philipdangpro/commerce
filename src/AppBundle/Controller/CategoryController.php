@@ -21,12 +21,17 @@ class CategoryController extends Controller
         $locale = $request->getLocale();
 //        $id = ($id > 0 ) ? $id : 33;
 
+        $category = $doctrine
+            ->getRepository(Category::class)
+            ->findBy(['slug' => $slug]);
+
         $products = $doctrine
             ->getRepository(Product::class)
             ->getProductsByCat($locale, $slug);
 
         return $this->render('category/index.html.twig', [
             'products' => $products,
+            'category' => $category
         ]);
     }
 }

@@ -3,13 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Commerce!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-
+        {#<link rel="stylesheet" href="{{ asset('css/reset.css') }}">#}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/font-awesome-all.min.css') }}">
-        {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
         {% block stylesheets %}{% endblock %}
-
     </head>
     <body>
         <div class="container">

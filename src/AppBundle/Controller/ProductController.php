@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ProductController extends Controller
 {
     /**
-     * @Route("/product/{slug}", name="homepage.category")
+     * @Route("/product/{slug}", name="homepage.product")
      */
     public function indexAction(ManagerRegistry $doctrine, Request $request, $slug):Response
     {

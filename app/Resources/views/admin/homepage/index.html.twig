@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row my-4">
+        <div class="col">
+            <h1 id="phpunit" class="mb-4">Dashboard</h1>
+            <p>
+
+                Bonjoue {{ app.user.username }}
+            </p>
+            {#
+                is_granted: tester le rôle de l'utilisateur ou son état de connexion
+                IS_AUTHENTICATED_FULLY : connecté
+            #}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ url('security.logout') }}">Déconnexion</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col">
+            <h1>Need ideas ?</h1>
+            <div class="row">
+                {#{% for prod in rndprod %}#}
+                    {#<div class="col-sm-4">#}
+                        {#<h2>{{ prod.name }}</h2>#}
+                        {#<img src="{{ asset(prod.image) }}" class="img-fluid" alt="">#}
+                        {#<p class="h5 my-2">{{ prod.price | localizedcurrency('EUR') }}€</p>#}
+                        {#<p>#}
+                            {#<a href="{{ url('homepage.product', {'slug' : prod.slug}) }}" class="btn btn-primary">#}
+                                {#<span class="fas fa-eye"></span>#}
+                                {#Consult#}
+                            {#</a>#}
+                        {#</p>#}
+                    {#</div>#}
+                {#{% endfor %}#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}

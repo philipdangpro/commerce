@@ -30,6 +30,13 @@
                                 <span class="fas fa-user"></span>
                             </a>
                             <div class="dropdown-menu">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <a class="dropdown-item" href="{{ url('security.logout') }}">Déconnexion</a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="{{ url('security.login') }}"></a>
+                                {% endif %}
+
+
                                 <a class="dropdown-item" href="#">Link</a>
                                 <a class="dropdown-item" href="#">Link</a>
                                 <div class="dropdown-divider"></div>
