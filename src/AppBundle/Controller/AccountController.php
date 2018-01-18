@@ -39,16 +39,13 @@ class AccountController extends Controller
             $em->persist($data);
             $em->flush();
 
-            //msg flash
-            $this->addFlash('notice', $translator->trans( 'flash_message.new_user'));
-
             //declencher l'événement AccountEvents::CREATE
             $this->addFlash('notice', $translator->trans('flash_message.new_user'));
             //événement
             $event = new AccountCreateEvent();
             $event->setUser($data);
             $event->setUserType("un argument custom");
-
+//
             // déclencher l'événement AccountEvents::CREATE
             $dispatcher->dispatch(AccountEvents::CREATE, $event);
 

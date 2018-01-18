@@ -4,3 +4,7 @@ homepage:
 
 register:
     title: S'enregistrer
+
+admin:
+    dashboard:
+        title: Tableau de bord

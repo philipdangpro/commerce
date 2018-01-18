@@ -3,10 +3,10 @@
 {% block body %}
     <div class="row my-4">
         <div class="col">
-            <h1 id="phpunit" class="mb-4">Dashboard</h1>
+            <h1 id="phpunit" class="mb-4">{{ 'admin.dashboard.title' | trans | capitalize }}</h1>
             <p>
 
-                Bonjoue {{ app.user.username }}
+                Bonjour {{ app.user.username }}
             </p>
             {#
                 is_granted: tester le rôle de l'utilisateur ou son état de connexion

@@ -14,8 +14,8 @@ class AccountControllerTest extends WebTestCase
      */
     public function listRoutes(){
         return [
-            ['/fr/register', "S'enregistrer"],
-            ['/en/register', "Sign up"],
+            ['/fr/register', "S'enregistrer", 'FR'],
+            ['/en/register', "Sign up", 'EN'],
         ];
     }
 
@@ -23,19 +23,48 @@ class AccountControllerTest extends WebTestCase
     /**
      * @dataProvider listRoutes
      */
-    public function testIndex(string $url, string $title)
+    public function testRoutes(string $url, string $title, string $locale)
     {
         //$client vient simuler les actions d'un client, simule un nvaigateur
         $client = static::createClient();
 
+        //suivre les redirections
+        $client->followRedirects();
+
         //vient tester le DOM, dessous, on écrit : 'le client clique sur localhost:8000/
         $crawler = $client->request('GET', $url);
 
-        // 1er arg : résultat attendu, contenu à tester
+        //assert : tests
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains($title, $crawler->filter('.container > .row:nth-of-type(2) h1')->text());
+        $this->assertFalse($crawler->filter('.container > .row:nth-of-type(2) h1')->count() === 4);
+        /*
+         * données du formulaire
+         *      array associatif
+         *         clé : name du champ de saisie
+         *         valeur : valeur saisie
+         */
+
+        $formData = [
+            'appbundle_user[username]' => 'user' . $locale . time(),
+            'appbundle_user[password]' => 'user',
+            'appbundle_user[email]' => 'user' . time() . '@user.com',
+        ];
+
+        // sélectionner le formulaire par le bouton submit
+        $form = $crawler
+            ->selectButton('Valider')
+            ->form($formData)
+        ;
+
+        //soumission du formulaire
+        $crawler = $client->submit($form);
+//        dump($crawler);
+
+        $this->assertEquals(1, $crawler->filter('.alert.alert-success')->count());
+
 
     }
+
 
 
 }

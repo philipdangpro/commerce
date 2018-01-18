@@ -71,9 +71,5 @@ class AccountEventsSubscriber implements EventSubscriberInterface
         //envoi email
         $this->mailer->send($message);
 
-
-
-        dump($event);
-//        exit;
     }
 }

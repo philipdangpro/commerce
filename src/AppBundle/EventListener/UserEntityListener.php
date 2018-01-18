@@ -44,8 +44,5 @@ class UserEntityListener
         //màj du mdp
         $user->setPassword($encodedPassword);
 
-//        dump($user);
-
-//        die;
     }
 }
