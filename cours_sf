@@ -1,0 +1,1113 @@
+/========================================\
+LISTE DES QUESTIONS A POSER
+|========================================|
+
+yaml
+json
+composer
+rest
+api
+soap
+paypal
+slimpay
+redis
+memcache
+solar
+elastic search
+les emails
+coinbase
+faire des tests unitaires
+comment brancher public avec nodejs, sass et autres
+htaccess
+l'internationalisation
+
+connaissance
+	paiement
+	tunnel d'achat
+
+.........TODOLIST.........
+créer compte github
+créer compte gitlab
+
+
+\========================================/
+
+.phar : php archive
+
+le php est de base dans l'espace "global"
+
+
+
+6x12
+
+
+antislash : \Datetime (l'antislash est un séparateur de directory)
+
+c'est mieux d'écrire un chemin complet pour le namespace
+
+Dans le composer.json, on créé : un namespace
+	
+src : les sources
+
+on crée un dossier "source", \App
+
+Psr-4 : demande que les namespaces suivent l'arborescence des vrais dossiers, attention, c'est juste une norme, en soit, on est pas obligé de la suivre.
+
+
+
+{
+  "autoload" : {
+    "psr-4" : {
+      "App\\" : "src/" ==> on définit le dossier physique qui va servir de raçine au namespace
+    }
+  }
+}
+
+
+
+
+composer dumpautoload : crée les vendors
+
+vendor contient les bibliothèques externes utilisées
+
+le dossier src est censé contenir que des classes
+
+à partir de ce moment-là : quand php va lire un fichier php, il va faire le require
+
+installer htop
+
+quand j'installe php, il y a déjà un serveur intégré nommé environ "php built-in"
+
+sluger/slugifier : reformate le texte
+
+--les fonctions--
+public : pubf
+prof
+prif
+
+on peut typer le retour de la fonction 
+	public function myFunction():string ou rien si mixed
+
+
+
+
+
+Interface ne contient que les noms des méthodes
+
+
+
+Dans les frameworks PHP, généralement, c'est :
+Interface
+|
+v
+Abstract Class
+|
+v
+Class
+
+on écrit MyClass extends AbstractMyClass implements InterfaceMyClass
+
+
+
+Trait : on peut voir ça comme un require de code, c'est moche et c'est pas utilisé dans SF
+    //import d'un trait
+    //c'est comme un require, disons que c'est un trait horizontal
+    //pour les traits, on écrit le use DANS LA CLASSE, c'est d'ailleurs à ça qu'on reconnaît les traits
+
+
+======================Symfony======================
+utilisé par SF, Laravel, Drupal, etc.
+le principe, c'est qu'il y a plein de composants
+	ex:
+		Templating : Twig
+		Form
+		Validator
+
+Différence entre SF3 et SF4
+	SF3 : on installe tous les composants, fonctionne sur PHP5 ou 7
+	SF4 : on installe juste les composants dont on a besoin
+
+packagist, parler de bundle, comme ça, on sait que c'est du sfy
+faire des tests
+
+ajd, dans tous les frameworks php, tout part de l'url
+
+
+======================Symfony LISTE CMD======================
+#pour l'install
+composer create-project symfony/framework-standard-edition sfy
+puis faire <Entrée> jusqu'à la fin
+
+configurer l'envt :
+	dans parameters.yml
+	config_dev.yml
+
+
+app.php, c'est le front controller, c'est lui qui route
+
+la route, c'est l'url
+un commentaire est différent d'une annotation
+
+pour AppBundle\Controller, la route, c'est / (cf les annotations)
+dans les annotations, il n'y a que des doubles guillemets
+on peut éventuellement écrire plusieurs annotations
+
+
+
+
+tous les controllers doivent être suffixés par Controller
+structure de la classe
+	Class MyClass {
+
+	/**
+	* @Route "/laroute","lenomderoute"
+	*/
+	public function indexAction()
+	{
+		le template
+	}
+
+	}
+
+
+nom: controleur.action
+dossier vue : controleur
+fichier vue : action
+
+
+$this->render( view:'default/hello.html.twig')
+{{clé du param}}
+
+
+
+
+Symfony\Component\HttpFoundation\Response
+
+pour avoir le profiler, il faut le body
+équivalent de $_REQUEST
+
+dans sf, on dit service pour dire classe
+c'est la classe Container, qui permet l'injection de dépendance
+
+Installer le plugin pour SF3.4
+File > Settings > Plugins > Browse repositories > "symfony" > Install > restart
+
+
+
+
+
+
+
+
+{{ macle}}
+{#comment}
+{% instructions %}
+
+
+TWIG
+
+set mavariable
+
+for key,value in montableau
+endfor
+
+date
+
+now | date('dmy')
+
+php bin/console debug:twig
+php bin/console debug:???
+php bin/console debug:twig
+
+
+pour Twig, on peut utiliser Twig getFunctions et getFunctions
+
+pour la mise en page, on a une notion de parent/enfant
+par exemple : base.html.twig, est un parent. Les parents sont créés à la raçine, les enfants dans les dossiers
+
+layout définit les zone de blocs
+template remplit les blocs
+
+
+======================================================================================
+=                                     DOCTRINE                                       =
+======================================================================================
+
+php bin/console doctrine:database:create
+
+doctrine fonctionne 
+	postBase
+	MySQL
+	Oracle
+	MySQLServer
+
+
+php bin/console doctrine:schema:update -f
+php bin/console doctrine:generate:form AppBundle:Contact
+
+
+
+
+PARTIE FORM
+
+            {{ form_label(form.lastname, 'Nom :') }}
+            {{ form_widget(form.lastname) }}
+            {{ form_label(form.email, 'Email :') }}
+            {{ form_widget(form.email) }}
+            {{ form_label(form.message, 'Message :') }}
+            {{ form_widget(form.message) }}
+
+
+
+
+
+
+
+form
+je crée un user
+puis un autre
+puis un autre
+
+
+utilisation des form.errors
+	dans google chercher :
+		symfony validation constraints
+		symfony form type
+
+
+        $builder
+            ->add('firstname', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Vous n'avez pas saisi votre nom"
+                    ]),
+
+                    new Regex([
+                        'message' => "votre prénom n'est pas valide REGEX",
+                        'pattern' => "/[a-zA-Z '-]+/"
+                    ])
+
+                ]
+            ])
+
+
+Doctrine
+	peut utiliser
+		getManager pour UPDATE, DELETE, INSERT
+		getRepository : SELECT ou autre
+
+c'est ici qu'on ajoute des contraintes sur les colonnes de la base
+/**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100, unique=true)
+     */
+    private $email;
+
+
+
+
+la clé étrangère est forcément du côté many
+
+
+DOCTRINE RELATION ET JOINTURE
+	Many-to-one unidirectional
+
+
+php bin/console doctrine:generate:entity
+	shortcut name : AppBundle:Country
+	annotation
+	nom des champs
+
+dans EntitéRepository, on rentre : 
+
+//mettre à jour le schéma
+php bin/console doctrine:schema:update -f
+
+
+php bin/console doctrine:generate:entities
+
+//genere les getter setters
+php bin/console doctrine:generate:entities AppBundle:Contact
+
+    //orm many to one : type d'association
+    //orm join column, le nom et à quelle colonne la colonne country_id de Contact est liée dans la table Country
+    //la colonne de jointure est country_id qui est liée à la colonne de clé primaire id
+    //on parle de propriété relationnelle
+
+
+ContactType, c'est la classe de formulaire
+	on rajoute la mthd add()
+
+ne pas oublier le slash entre ORM et le contenu de l'annotation
+@ORM\UneAnnotationDoctineDansSymfony
+
+
+
+pour générer un form, on utilise 
+doctrine:generate:form
+
+
+CREATION D'UNE TABLE LANGUE avec relation M-M avec Contact
+1. on crée l'entité en ligne de commande
+	php bin/console doctrine:generate:entity
+2. tjrs nommé avec AppBundle
+3. on nomme et on type les champs
+4. on ajoute les annotations pour créer les 1-n n-n etc
+	php bin/console doctrine:generate:entity
+5. on fait le schéma update
+	php bin/console doctrine:schema:update -f
+
+différence entre add et set
+	add pour n-n
+	set pour 1-1 ou 1-n
+
+
+
+
+
+
+Utilisation d'une méthode custom avec Twig
+	Fonction Twig
+		|___il faut requêter__donc on utilise_Doctrine
+		|___on a besoin d'un résultat___pour afficher une vue__donc on a besoin de la classe Twig
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/
+	/blog (layout blog)
+	/mentions-legales (layout base)
+	/informations-pratiques (layout base)
+	/contact (layout formulaire contact)
+	/login (layout login)
+	/category/{id} (layout base)
+		/category/article/{id} (layout base)
+
+	/admin/login (layout admin_login)
+
+
+
+
+
+
+===============FIXTURES===================
+
+composer require --dev doctrine/doctrine-fix
+php bin/console doctrine:fixtures:load
+On crée les classes dans AppBundle\DataFixtures
+
+
+namespace AppBundle\DataFixtures;
+
+use AppBundle\Entity\Contact;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+
+class ContactFixtures extends Fixture implements DependentFixtureInterface
+{
+    public function load(ObjectManager $manager)
+    {
+    	//on sette
+        for($i = 0; $i < 20; $i++){
+            $entity = new Contact();
+            $entity->setFirstname("firstname$i");
+            $entity->addLanguage(
+                $this->getReference("language10")
+            );
+
+            $manager->persist($entity);
+            $this->addReference("$i", $entity);
+        }
+        //on execute
+        $manager->flush();
+    }
+    //gère l'ordre d'exécution
+    public function getDependencies()
+    {
+        return [
+            CountryFixtures::class,
+            LanguageFixtures::class,
+        ];
+    }
+
+}
+
+
+ajout de l'extension de doctrine via composer
+>>composer require beberlei/DoctrineExtensions
+
+
+
+
+
+SELECT
+GROUP BY
+GROUP_CONCAT
+LIKE
+WHERE
+SEPARATOR
+
+
+
+languages
+
+SELECT contact.lastname, GROUP_CONCAT(languages.name SEPARATOR '|') AS language FROM AppBundle\Entity\Contact contact INNER JOIN contact.languages languages GROUP BY contact.lastname
+
+
+
+composer require fzaninotto/faker
+
+
+
+
+
+
+
+
+
+MCD : Modèle Conceptuel de Données, grosso modo sans les tables de jointures, du coup en ORM, ça ne sera que les tables entités
+
+MPD : Modèle Physique de Données
+
+
+===============I18N et L10N==================
+
+préfixer la route grâce à une annotation au niveau de la classe
+activer la translation dans config.yml
+créer le dossier "translations" dans app/Resources
+
+
+
+
+composer create-project symfony/framework-standard-edition commerce
+faire <Entrée> jusqu'à la fin
+
+dans routing.yml
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+    #on prefixe toutes nos routes par
+    prefix: {/_locale}
+
+
+Les informations relatives à la base sont dans parameters.yml
+	parameters, c'est pour la prod
+	config_dev, c'est pour le dev
+
+
+
+"barre de debuggage" est différent du "profiler"
+
+php bin/console doctrine:database:create
+>>Created database `commerce` for connection named default
+"default" dit que l'on va taper dans la base de données par défaut, celle qui est spécifiée dans les fichiers .yml
+
+php bin/console doctrine:generate:entity AcmeBlogBundle:Blog/Post --fields="title:string(255) body:text"
+
+php bin/console doctrine:schema:update -f
+
+
+Product 					ProductTranslation
+	id: 1						id: 1
+									locale: fr
+									translate: 1
+								id: 2
+									locale: en
+									translate: 2
+
+
+Doctrine Behaviours
+	intéressant pour
+		translate
+		sluggable
+
+ne pas oublier d'ajouter les modules dans AppKernel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------
+--------------------------------
+--------------------------------
+--------------------------------
+--------------------------------
+
+
+
+
+
+ENTITIES 
+
+PRIMARY ENTITIES
+	Customer
+		id
+		firstname
+		lastname
+		birthdate
+		gender
+		is_active
+		blocked_by
+		created_at
+		last_modified_at
+		last_connected_at	
+		friends
+		followings
+		address
+		shipping_address
+		billing_address
+		is_admin
+
+	Category
+		id
+		name
+		parent
+		level
+
+	Product
+		id
+		name : string / 
+		price : decimal / 5 / 2
+		brand
+		description
+		seller
+		category
+		tags
+		nb_buys
+		available_qty
+
+	Tags
+		id
+		name
+
+	Country
+		id
+		name
+
+	Order
+		id
+		products
+		status
+		last_status_date
+
+
+
+	Ratings
+		id
+		type (related to EntityX)
+
+	Invoice
+	Address
+		type
+		street
+		complement street
+		zipcode
+		city
+		country
+
+	Company	
+
+SECONDARY ENTITIES
+	SecretQuestion
+	EmailTemplate
+	Gender
+	Rating
+	Comment
+
+
+
+
+
+TODO
+	mettre en place internationalisation
+	créer routes principales
+	Import de données et pas du faker à la volée
+
+
+
+
+
+
+
+
+
+
+
+<?php
+/**
+* Created by PhpStorm.
+* User: wabap2-13
+* Date: 12/01/18
+* Time: 12:22
+*/
+
+namespace  AppBundle\DataFixtures;
+
+use AppBundle\Entity\Category;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Persistence\ObjectManager;
+
+class CategoryFixtures extends Fixture
+{
+   private $locales = ['en' => 'en_US', 'fr' => 'fr_FR'];
+   
+   public function load(ObjectManager $manager)
+   {
+       for($i = 0; $i < 4; $i++) {
+
+           // cibler les propriétés non traduites
+           $categorie = new Category();
+
+           foreach($this->locales as $key => $value) {
+
+               // use the factory to create a Faker\Generator instance
+               $faker = \Faker\Factory::create($value);
+
+
+
+
+               //créer des valeurs traduits pour les propriétés
+               $name = ($key === 'fr') ? 'catégorie' : 'category';
+               //$description = ($value === 'fr') ? 'description' : 'description';
+
+               $description = $faker->realText();
+
+               // méthode translate est fourni par doctrine behaviors
+               $categorie->translate($key)->setName($name . $i);
+               $categorie->translate($key)->setDescription($description);
+           }
+
+           //méthode mergeNewTranslations est fourni par doctrine behaviors
+
+           $categorie->mergeNewTranslations();
+
+           $manager->persist($categorie);
+       }
+
+       $manager->flush();
+
+
+   }
+}
+
+
+
+
+
+php bin/console help
+php bin/console debug:twig
+
+
+
+
+
+
+
+
+
+
+COURS 15/01/2018
+revision
+
+création du dossier app/Resources/translations avec messages.fr.yml et messages.en.yml
+ses petits fichiers de traduction sont utilisés pour les traductions dites statiques, pour les traductions dynamiques, on utilise les tables de trad.
+
+aller dans config.yml
+	et activer la clé
+		framework
+			translator: { fallbacks: ['%locale']}
+
+
+
+//récupération de la langue
+        $locale = $request->getLocale();
+
+penser à vider le cache
+
+REPOSITORY est utilisé pour créer des requêtes select
+	Doctrine
+		peut utiliser
+			getManager pour UPDATE, DELETE, INSERT
+			getRepository : SELECT ou autre
+
+
+//pour joindre avec la table de traduction on utilise une colonne de jointure invisible qui s'appelle dans translations
+            ->join('c.translations','c_translations')
+
+
+//création d'une requête pour récupérer les noms de catégories en fonction de la locale avec le nombre de produit de chaque locale
+    //on prend un nom de méthode explicite, en paramètre, on met la locale, récupérer dans le controller
+    public function getCategoriesByLocaleWithProductsCount($locale)
+    {
+        $results = $this
+        	//on écrit une requête de select, donc on utilise Repository et EM
+            ->createQueryBuilder('c')
+            //on joint avec la table translations
+            ->join('c.translations','c_translations')
+            //on fait la jointure forcément sur la propriété de jointure, en utilisant son nom, c'est la propriété où on fait l'association avec @ORM/etc....
+            ->join('c.products', 'c_products')
+            //pour compter, on utilise count et on est obligé d'utiliser groupBy
+            ->select('count(c_products.id), c_translations.name')
+            ->groupBy('c_translations.name')
+            ->where('c_translations.locale = :param1')
+            ->setParameters([
+                'param1' => $locale
+            ])
+            ->getQuery()
+            ->getResult();
+
+        return $results;
+    }
+
+Installer doctrine extensions
+	composer require beberlei/DoctrineExtensions
+	aller sur le github, ajouter mysql.yml dans app/config et la ligne dans config.yml pour importer ce fichier
+
+le matin penser à réactiver Symfony plugins et php7
+
+composer require twig/extensions
+Puis il faut rajouter les lignes suivantes dans services.yml
+    Twig_Extensions_Extension_Text:
+      class: Twig_Extensions_Extension_Text
+    Twig_Extensions_Extension_I18n:
+      class: Twig_Extensions_Extension_I18n
+    Twig_Extensions_Extension_Intl:
+      class: Twig_Extensions_Extension_Intl
+    Twig_Extensions_Extension_Array:
+      class: Twig_Extensions_Extension_Array
+    Twig_Extensions_Extension_Date:
+      class: Twig_Extensions_Extension_Date
+
+
+
+
+
+
+======================
+PROCEDURE INSTALLATION
+======================
+
+composer create-project symfony/framework-standard-edition sfy
+puis faire <Entrée> jusqu'à la fin
+
+configurer l'envt :
+	dans parameters.yml
+	config_dev.yml
+
+{
+  "autoload" : {
+    "psr-4" : {
+      "App\\" : "src/" ==> on définit le dossier physique qui va servir de raçine au namespace
+    }
+  }
+}
+
+composer require knplabs/doctrine-behaviors
+composer require beberlei/DoctrineExtensions
+composer require doctrine/data-fixtures
+
+Installer doctrine extensions
+	composer require beberlei/DoctrineExtensions
+	aller sur le github, ajouter mysql.yml dans app/config et la ligne dans config.yml pour importer ce fichier
+
+
+créer l'internalionalisation from scratch
+
+le matin penser à réactiver Symfony plugins et php7
+
+composer require twig/extensions
+Puis il faut rajouter les lignes suivantes dans services.yml
+    Twig_Extensions_Extension_Text:
+      class: Twig_Extensions_Extension_Text
+    Twig_Extensions_Extension_I18n:
+      class: Twig_Extensions_Extension_I18n
+    Twig_Extensions_Extension_Intl:
+      class: Twig_Extensions_Extension_Intl
+    Twig_Extensions_Extension_Array:
+      class: Twig_Extensions_Extension_Array
+    Twig_Extensions_Extension_Date:
+      class: Twig_Extensions_Extension_Date
+
+
+TODO
+	utiliser fonction twig
+
+
+
+16/01/2018
+==========TESTS UNITAIRES==========
+Utilisation de PHPUnit
+	aller sur https://phpunit.de/ > Getting started > DL le .phar
+	enregistrer le fichier à la racine du projet, là où se trouve le fichier de config phpunit.xml.dist
+	Suffixer les classes par Test
+	Préfixer les méthodes par test
+	on lance 
+
+	>>>Failed asserting that 404 matches expected 200.
+	=> veut dire que l'on attend une réponse 200
+
+	crée un dossier de couverture
+		php phpunit-6.5.5.phar --coverage-html couverture
+	créer listRoutes
+
+	 /**
+     * @dataProvider listRoutes
+     */
+	
+	php phpunit-6.5.5.phar tests/AppBundle/Controller (on peut cibler le dossier de test)
+
+Info
+	le dossier "tests" contient déjà une certaine architecture, elle est identique à la structure du dossier src/
+	En pratique, on suffixe les classes par Test, ex: DefaultControllerTest.php
+	Sur des gros projets, les tests peuvent prendre toute une nuit
+	Les méthodes à tester sont préfixés par test
+	Les méthodes de phpunit sont de type "assertUneMéthode"
+	bonnes pratiques : après avoir écrit une fonctionnalité, on écrit les tests juste après
+
+
+
+==================
+SECURITE
+	utilisation de la sécurité
+		il faudrait préfixer les routes de l'admin
+
+	pour surcharger au lieu d'ajouter des prefixes de route, on peut cibler des dossiers à préfixer
+
+
+	aller voir le fichier security.yml
+
+	        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ url('security.logout') }}">Déconnexion</a>
+            {% endif %}
+
+https://symfony.com/doc/3.4/security/entity_provider.html
+
+
+users, c'est une table réservé dans mysql
+
+
+============
+GENERATION D'UNE CREATION DE COMPTE
+	on crée une vue et un controller
+	php bin/console doctrine:generate:form AppBundle:User
+	ça crée une classe UserType
+	
+	on crée une entité User
+
+	dans security.yml
+		providers : les fournisseurs de comptes
+		plusieurs choix
+			in_memory = dans le fichier
+			regrouper les utilisateurs
+
+
+vendor/symfony/symfony/src/symfony/bridge/twig/resources/views/form
+
+============
+GESTION D'UN FORMULAIRE
+	les contraintes sont à mettre dans validators
+	les messages dans messages
+
+TIPS : à chaque fois que l'on crée un nouveau .yml, c'est mieux de vider le cache, du coup, on peut vider manuellement le fichier var/cache/dev ou(test,etc.)
+
+une action de postage
+on instancie une entité
+on recupère le path de la classe entitétype
+on crée le form avec createForm
+on recupère la request
+
+
+================
+LES EVENEMENTS
+
+	Insert : PrePersist, PostPersist
+	Update : PreUpdate, PostUpdate
+	Delete : PreRemove, PostRemove
+	il existe PreLoad ou PostLoad
+
+on crée EventListener/
+
+php bin/console debug:container permet de lister les services
+
+
+
+================
+on a une erreur quand on exécuter avec l'écouteur
+FAIRE DE L'INJECTION DE DEPENDANCE A LA MANO, PAS COMME DANS LES CONTROLLERS
+	aller dans services.yml
+
+	
+message flash
+
+si on est connecté, login
+comportement lors du login
+	- j'essaie de me connecter à la page A, si je ne suis pas connecté, je suis renvoyé vers la page de login, je me loggue, j'arrive sur la page où je voulais aller
+	- je suis sur la page de login, je me connecte, j'atteris sur la default_target_path
+
+	faire une route de redirection
+
+=========================
+CREATION EVENEMENT PERSONNALISE
+1/ liste des événements par famille
+
+2/ événement extends Event
+		propriété
+		getter/setter
+		1 évènement est lié à une classe
+
+3/ subscriber : va écouter plusieurs événéments et déclenchera les actions
+4/ déclencheur : event dispatcher
+
+
+Events
+	AccountCreateEvent
+		
+	AccountEvents
+		contient les constantes avec le nom des événements
+EventSubscriber
+	AccountEventsSubscriber
+
+
+=========================
+ENVOI DE MAIL
+installation de mailtrap : https://mailtrap.io/inboxes
+	s'inscrire via github
+	configurer le service de mail que pour l'env de dev (on le met donc dans config_dev)
+
+swiftmailer est la bibli utilisé par Symfony pour envoyer des mails
+	https://swiftmailer.symfony.com/docs/introduction.html
+
+//composer require "swiftmailer/swiftmailer:^6.0"
+
+serveur smtp
+	notre pc client communique avec le serveur smtp via la config de swiftmailer notamment le username+pwd, puis le serveur smtp reçoit les infos et se charge d'envoyer les mails
+
+
+----dans php.ini--------------
+	[mail function]
+	; For Win32 only.
+	; http://php.net/smtp
+	SMTP = localhost
+	; http://php.net/smtp-port
+	smtp_port = 25
+------------------------------
+
+
+dans le subscriber
+on sette le message puis on send via
+        $message = (new \Swift_Message("objet du message"))
+            //c'est le site qui envoie le mail
+            ->setFrom('contact@website.com')
+            ->setTo($event->getUser()->getEmail())
+            ->setBody('Bienvenue')
+        ;
+
+        //envoi email
+        $this->mailer->send($message);
+
+pour que ce soit lu comme du html, penser à rajouter 'text/html'
+
+
+CODE COVERAGE
+php phpunit-6.5.5.phar --coverage-html couverture
+
+
+
+=========================
+NOUVEAU EVENEMENT
+
+
+
+
+
+
+
+
+
+
+
+
+
