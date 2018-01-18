@@ -161,7 +161,7 @@ $this->password,
      *
      * @return User
      */
-    public function setPassword($password)
+    public function setPassword($password):User
     {
         $this->password = $password;
 

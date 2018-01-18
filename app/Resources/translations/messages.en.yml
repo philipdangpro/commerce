@@ -2,6 +2,8 @@ homepage:
     categories: categories
     ideas: need ideas ?
 
+register:
+    title: Sign up
 
 flash_message:
     new_user: Votre compte a été créé

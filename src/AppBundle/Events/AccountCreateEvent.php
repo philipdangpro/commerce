@@ -9,6 +9,7 @@
 
 namespace AppBundle\Events;
 
+use AppBundle\Entity\User;
 use Symfony\Component\EventDispatcher\Event;
 
 class AccountCreateEvent extends Event
@@ -21,7 +22,7 @@ class AccountCreateEvent extends Event
      private $userType;
 
     /**
-     * @return mixed
+     * @return User
      */
     public function getUser()
     {

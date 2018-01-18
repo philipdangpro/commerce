@@ -14,6 +14,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AccountEventsSubscriber implements EventSubscriberInterface
 {
+    private $mailer;
+    private $twig;
+
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig)
+    {
+        $this->mailer = $mailer;
+        $this->twig = $twig;
+    }
+
     public static function getSubscribedEvents()
     {
         /*
@@ -33,7 +42,38 @@ class AccountEventsSubscriber implements EventSubscriberInterface
      */
     public function create(AccountCreateEvent $event)
     {
+        /*
+         * envoi mail
+         *      service d'emailing : SwiftMailer
+         *      message: Swift_Message
+         *      $mailer->send(): envoie le message
+         *      setFrom est une méthode obligatoire
+         *          par défaut: type text/plain : texte simple, non enrichi
+         */
+
+        $emailTemplate = $this->twig->render('emailing/account.create.html.twig', [ 'data' => $event->getUser()]);
+
+        $message = (new \Swift_Message("objet du message"))
+            //c'est le site qui envoie le mail
+            ->setFrom('contact@website.com')
+            ->setTo($event->getUser()->getEmail())
+            //->setBody('<h1 style="color:red;">Bienvenue' . $event->getUser()->getUsername(). '</h1>', 'text/html')
+            ->setBody(
+                $emailTemplate, 'text/html'
+            )
+            ->addPart(
+                $this->twig->render('emailing/account.create.txt.twig',
+                    ['data' => $event->getUser()]
+                )
+            )
+        ;
+
+        //envoi email
+        $this->mailer->send($message);
+
+
+
         dump($event);
-        exit;
+//        exit;
     }
 }

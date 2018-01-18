@@ -1,11 +1,9 @@
-
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
     <div class="row my-4">
         <div class="col">
-            <h1 class="mb-4">S'enregistrer</h1>
+            <h1 class="mb-4">{{ 'register.title' | trans | capitalize}}</h1>
 
             {{ form_start(form, {'attr' : {'novalidate' : 'novalidate'}}) }}
                 <p>

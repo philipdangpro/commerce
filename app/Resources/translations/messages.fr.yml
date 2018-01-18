@@ -1,3 +1,6 @@
 homepage:
     categories: catégories
     ideas: besoin d'idées
+
+register:
+    title: S'enregistrer
