@@ -39,6 +39,18 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+#c'est l'adresse qu'on active en mode développement
+swiftmailer:
+    delivery_addresses: ['22f484ffb1-7034e3@inbox.mailtrap.io']
+    spool:     { type: memory }
+    transport: smtp
+    host:      smtp.mailtrap.io
+    username:  42a0e3dff39870
+    password:  1b0c5dad3ec01c
+    auth_mode: cram-md5
+    port: 2525
+
+
 parameters:
       database_name: commerce
       database_user: root

@@ -29,10 +29,6 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
 
     # activer les extensions twig
     Twig_Extensions_Extension_Text:
@@ -45,3 +41,19 @@ services:
       class: Twig_Extensions_Extension_Array
     Twig_Extensions_Extension_Date:
       class: Twig_Extensions_Extension_Date
+
+    # add more services, or override services that need manual wiring
+    # AppBundle\Service\ExampleService:
+    #     arguments:
+    #         $someArgument: 'some_value'
+
+    # injecter des services dans les classes Doctrine
+    # propriété arguments : arguments du constructeur de la classe
+    # cibler un service par spn identifiant précédé d'un @ (liste des services: debug:container)
+    # tags/name: définir le type de service
+    AppBundle\EventListener\UserEntityListener:
+        arguments:
+            $encoder: '@security.password_encoder'
+        tags:
+            name: doctrine.orm.entity_listener
+

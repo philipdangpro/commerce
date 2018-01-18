@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
+use AppBundle\Events\AccountCreateEvent;
+use AppBundle\Events\AccountEvents;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use MongoDB\Driver\Manager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,13 +14,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
+use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class AccountController extends Controller
 {
     /**
      * @Route("/register", name="account.register")
      */
-    public function registerAction(ManagerRegistry $doctrine, Request $request):Response
+    public function registerAction(ManagerRegistry $doctrine, Request $request, TranslatorInterface $translator, EventDispatcherInterface $dispatcher):Response
     {
         //creation d'un formulaire
         //il est nécessaire d'instancier la classe User
@@ -30,8 +34,27 @@ class AccountController extends Controller
 
         if($form->isSubmitted() && $form->isValid()){
             //récupération de la saisie
-            $data = $form->getData();
-            dump($data);die;
+            $data = $form->getData(); //est une instance de Entity/User
+            $em = $doctrine->getManager();
+            $em->persist($data);
+            $em->flush();
+
+            //msg flash
+            $this->addFlash('notice', $translator->trans( 'flash_message.new_user'));
+
+            //declencher l'événement AccountEvents::CREATE
+            $this->addFlash('notice', $translator->trans('flash_message.new_user'));
+            //événement
+            $event = new AccountCreateEvent();
+            $event->setUser($data);
+            $event->setUserType("un argument custom");
+
+            // déclencher l'événement AccountEvents::CREATE
+            $dispatcher->dispatch(AccountEvents::CREATE, $event);
+
+
+            //redirect
+            return $this->redirectToRoute('security.login');
         }
 
 

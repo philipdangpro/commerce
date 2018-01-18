@@ -43,8 +43,11 @@ security:
 #espace pair = clé de fichier yaml
 # - = array de yaml
 # {objet de yaml}
+
+    #zones protégées
     access_control:
         - { path: ^/(fr|en)/admin, roles: ROLE_ADMIN}
+        - { path: ^/(fr|en)/profile, roles: ROLE_USER}
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -66,12 +69,12 @@ security:
             form_login:
                 login_path: security.login
                 check_path: security.login
-                default_target_path: admin.homepage.index
+                default_target_path: security.redirect.by.role
             #path : nom de la route de déconnexion
             #target : page d'atterrissage après déconnexion
             logout:
                 path: security.logout
                 target: /
 
-            #utiliser le regroupment de providers
+            #utiliser le regroupement de providers, c'est le vrai provider qui va cibler les providers, c'est une clé réservée
             provider: all_providers

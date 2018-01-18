@@ -37,6 +37,9 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    #la liste des thèmes se situe dans
+    #vendor/symfony/symfony/src/symfony/bridge/twig/resources/views/form
+    form_themes: [bootstrap_3_layout.html.twig]
 
 # Doctrine Configuration
 doctrine:

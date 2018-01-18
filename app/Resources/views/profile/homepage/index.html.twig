@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row my-4">
+        <div class="col">
+            <h1 class="mb-4">Profil</h1>
+            <p>Bonjour {{ app.user.username }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}
