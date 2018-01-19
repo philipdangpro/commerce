@@ -5,6 +5,12 @@
         <div class="col">
             <h1 id="phpunit" class="mb-4">{{ 'homepage.categories' | trans | capitalize }}</h1>
             {#{{ dump(categories) }}#}
+
+            {% for message in app.flashes('notice') %}
+                <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <p>
                 {% for categorie in categories %}
                 <a href="#" class="btn btn-primary">

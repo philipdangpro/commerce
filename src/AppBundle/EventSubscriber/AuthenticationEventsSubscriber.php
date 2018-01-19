@@ -58,13 +58,12 @@ class AuthenticationEventsSubscriber implements EventSubscriberInterface
             }
             //récupération de la valeur
             $value = $this->session->get('authentication_failure');
+
             dump('il faut changer de mail');
         } else {
             $this->session->set('authentication_failure', 1);
         }
 
-        dump($this->session->get('authentication_failure')); exit;
-        exit;
 
     }
 
