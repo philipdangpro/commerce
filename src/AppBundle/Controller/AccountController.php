@@ -49,7 +49,6 @@ class AccountController extends Controller
             // déclencher l'événement AccountEvents::CREATE
             $dispatcher->dispatch(AccountEvents::CREATE, $event);
 
-
             //redirect
             return $this->redirectToRoute('security.login');
         }
@@ -57,6 +56,16 @@ class AccountController extends Controller
 
          return $this->render('account/register.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/password-forgot", name="account.password.forgot"
+     */
+    public function passwordForgotAction():Response
+    {
+        return $this->render('account/password.forgot.html.twig', [
+
         ]);
     }
 
