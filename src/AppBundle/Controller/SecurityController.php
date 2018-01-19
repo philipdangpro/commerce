@@ -26,8 +26,8 @@ class SecurityController extends Controller
         //récupération du nombre d'échecs de connexion : AuthenticationEventsSubscriber
         if($session->has('authentication_failure') && $session->get('authentication_failure') === 3){
             $session->remove('authentication_failure');
-            $this->addFlash('notice', 'trois essais et ça ne fonctionne toujours pas');
-            return $this->redirectToRoute('homepage.index');
+            $this->addFlash('notice', 'Avez-vous oublié vos identifiants, il vous est possible de modifier votre mot de passe');
+            return $this->redirectToRoute('account.password.forgot');
         }
 
         // get the login error if there is one
@@ -69,7 +69,5 @@ class SecurityController extends Controller
             return $this->redirectToRoute('profile.homepage.index');
         }
 
-        dump($roles);
-        exit;
     }
 }

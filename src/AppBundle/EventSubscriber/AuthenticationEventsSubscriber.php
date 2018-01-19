@@ -18,10 +18,12 @@ use Symfony\Component\Security\Core\Event\AuthenticationFailureEvent;
 class AuthenticationEventsSubscriber implements EventSubscriberInterface
 {
     private $session;
+    private $maxAuthenticationFailure;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, int $maxAuthenticationFailure)
     {
         $this->session = $session;
+        $this->maxAuthenticationFailure = $maxAuthenticationFailure;
     }
 
 
@@ -52,7 +54,7 @@ class AuthenticationEventsSubscriber implements EventSubscriberInterface
             //si les 3 échecs ne sont pas atteints
             $value = $this->session->get('authentication_failure');
 
-            if($value < 3){
+            if($value < $this->authenticationFailure){
                 $value += 1;
                 $this->session->set('authentication_failure', $value);
             }

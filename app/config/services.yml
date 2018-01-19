@@ -61,6 +61,6 @@ services:
     # le subscriber reçoit un paramètre
     # cibler un paramètre : entourer le paramètre avec des %
     # propriété arguments : argument du constructeur de la classe
-    AppBundle\EventSubscriber\AuthenticationEventsSubscriver:
+    AppBundle\EventSubscriber\AuthenticationEventsSubscriber:
         arguments:
-          $authenticationFailure: '%max_authentication_failure%'
+          $maxAuthenticationFailure: '%max_authentication_failure%'
