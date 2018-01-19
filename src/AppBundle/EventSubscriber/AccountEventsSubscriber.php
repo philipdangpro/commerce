@@ -10,17 +10,24 @@ namespace  AppBundle\EventSubscriber;
 
 use AppBundle\Events\AccountCreateEvent;
 use AppBundle\Events\AccountEvents;
+use AppBundle\Events\AccountForgotPasswordEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use AppBundle\Entity\User;
+use AppBundle\Entity\UserToken;
+use Doctrine\Common\Persistence\ManagerRegistry;
+
 
 class AccountEventsSubscriber implements EventSubscriberInterface
 {
     private $mailer;
     private $twig;
+    private $doctrine;
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig)
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, ManagerRegistry $doctrine)
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
+        $this->doctrine = $doctrine;
     }
 
     public static function getSubscribedEvents()
@@ -32,7 +39,8 @@ class AccountEventsSubscriber implements EventSubscriberInterface
          */
         
         return [
-            AccountEvents::CREATE => 'create'
+            AccountEvents::CREATE => 'create',
+            AccountEvents::PASSWORD_FORGOT => 'passwordForgot',
         ];
     }
 
@@ -72,4 +80,61 @@ class AccountEventsSubscriber implements EventSubscriberInterface
         $this->mailer->send($message);
 
     }
+
+
+    public function passwordForgot (AccountForgotPasswordEvent $event)
+    {
+        //tester l'existence de l'email dans la base
+//        dump($event->getPostData());
+//        dump($event->getPostData()->getUserEmail());exit;
+        $user = $this->doctrine
+            ->getRepository(User::class)
+            ->findOneBy(['email' => $event->getPostData()->getUserEmail()])
+        ;
+
+
+
+        $now = new \Datetime();
+        if(date_diff($now, $tom)->format('%d')){
+            var_dump(date_diff($now, $tom)->format('%d day et %h hour') . ' de différence');
+        }
+
+        
+
+        if ($user){
+//            dump('mama existe');
+            $data = $event->getPostData();
+            //init token
+            $token = bin2hex(random_bytes(10));
+            $data->setToken($token);
+            //initdate
+            $date = new \Datetime('+1 day');
+            $data->setExpirationDate($date);
+
+            //on insère dans UserToken
+            $em = $this->doctrine->getManager();
+            $em->persist($data);
+            $em->flush();
+
+//            dump($data);
+//            exit;
+
+            $message = (new \Swift_Message("objet du message Reinitialisation"))
+                ->setFrom('contact@website.com')
+                ->setTo($event->getPostData()->getUserEmail())
+                ->setBody('<h1 style="color:red;">Bienvenue'
+                    . "dsgdsgfdfg"
+                    . '</h1><div> 
+                    . $event->getPostData()->setToken($token)</div>',
+                    'text/html'
+                )
+            ;
+
+            //envoi email
+            $this->mailer->send($message);
+        }
+    }
+
+
+
 }

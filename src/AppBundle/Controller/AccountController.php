@@ -16,6 +16,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use AppBundle\Entity\UserToken;
 use AppBundle\Form\UserTokenType;
+use AppBundle\Events\AccountForgotPasswordEvent;
 
 class AccountController extends Controller
 {
@@ -70,37 +71,17 @@ class AccountController extends Controller
 
         $form->handleRequest($request);
         //si la page est soumise, on exécute les actions suivantes
+
         if($form->isSubmitted() && $form->isValid()){
-            $postData = $form->getData();
-
-            //init token
-            $token = bin2hex(random_bytes(10));
-            $postData->setToken($token);
-            //initdate
-            $date = new \Datetime('+1 day');
-            $postData->setExpirationDate($date);
-
-            //on insère
-            $em = $doctrine->getManager();
-            $em->persist($postData);
-            $em->flush();
-
-
-            //declencher l'événement AccountEvents::CREATE
+            //on renvoie un message de succès ANYWAY
             $this->addFlash('notice', $translator->trans('flash_message.password_forgot.success'));
-            //événement
-            $event = new AccountCreateEvent();
-//            $event->setUser($data);
-//            $event->setUserType("un argument custom");
 
-
-            // déclencher l'événement AccountEvents::CREATE
-            $dispatcher->dispatch(AccountEvents::CREATE, $event);
-
+            //on balance l'evt
+            $event = new AccountForgotPasswordEvent();
+            $event->setPostData($form->getData());
+            $dispatcher->dispatch(AccountEvents::PASSWORD_FORGOT, $event);
 
         }
-
-
 
         return $this->render('account/password.forgot.html.twig', [
             'form' => $form->createView()
