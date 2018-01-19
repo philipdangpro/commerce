@@ -2,12 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Category;
-use AppBundle\Entity\Product;
+
 use AppBundle\Events\AccountCreateEvent;
 use AppBundle\Events\AccountEvents;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use MongoDB\Driver\Manager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +14,8 @@ use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use AppBundle\Entity\UserToken;
+use AppBundle\Form\UserTokenType;
 
 class AccountController extends Controller
 {
@@ -60,12 +60,50 @@ class AccountController extends Controller
     }
 
     /**
-     * @Route("/password-forgot", name="account.password.forgot"
+     * @Route("/password-forgot", name="account.password.forgot")
      */
-    public function passwordForgotAction():Response
+    public function passwordForgotAction(ManagerRegistry $doctrine, Request $request, TranslatorInterface $translator, EventDispatcherInterface $dispatcher):Response
     {
-        return $this->render('account/password.forgot.html.twig', [
+        $entity = new UserToken();
+        $type = UserTokenType::class;
+        $form = $this->createForm($type, $entity);
 
+        $form->handleRequest($request);
+        //si la page est soumise, on exécute les actions suivantes
+        if($form->isSubmitted() && $form->isValid()){
+            $postData = $form->getData();
+
+            //init token
+            $token = bin2hex(random_bytes(10));
+            $postData->setToken($token);
+            //initdate
+            $date = new \Datetime('+1 day');
+            $postData->setExpirationDate($date);
+
+            //on insère
+            $em = $doctrine->getManager();
+            $em->persist($postData);
+            $em->flush();
+
+
+            //declencher l'événement AccountEvents::CREATE
+            $this->addFlash('notice', $translator->trans('flash_message.password_forgot.success'));
+            //événement
+            $event = new AccountCreateEvent();
+//            $event->setUser($data);
+//            $event->setUserType("un argument custom");
+
+
+            // déclencher l'événement AccountEvents::CREATE
+            $dispatcher->dispatch(AccountEvents::CREATE, $event);
+
+
+        }
+
+
+
+        return $this->render('account/password.forgot.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 

@@ -10,5 +10,6 @@ class AccountEvents
      */
     const CREATE = 'account.create';
     const DELETE = 'account.delete';
+    const PASSWORD_FORGOT = 'account.password.forgot';
 
 }

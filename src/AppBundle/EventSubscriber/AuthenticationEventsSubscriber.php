@@ -54,7 +54,7 @@ class AuthenticationEventsSubscriber implements EventSubscriberInterface
             //si les 3 échecs ne sont pas atteints
             $value = $this->session->get('authentication_failure');
 
-            if($value < $this->authenticationFailure){
+            if($value < $this->maxAuthenticationFailure){
                 $value += 1;
                 $this->session->set('authentication_failure', $value);
             }

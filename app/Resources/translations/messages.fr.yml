@@ -8,3 +8,11 @@ register:
 admin:
     dashboard:
         title: Tableau de bord
+
+
+
+flash_message:
+    new_user: Your account has been created
+    password_forgot:
+        success: A reset password email has been sent to you
+        failure: An error occured, please contact your administrator
