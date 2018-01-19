@@ -95,11 +95,11 @@ class AccountEventsSubscriber implements EventSubscriberInterface
 
 
         $now = new \Datetime();
-        if(date_diff($now, $tom)->format('%d')){
-            var_dump(date_diff($now, $tom)->format('%d day et %h hour') . ' de différence');
-        }
+//        if(date_diff($now, $tom)->format('%d')){
+//            var_dump(date_diff($now, $tom)->format('%d day et %h hour') . ' de différence');
+//        }
 
-        
+
 
         if ($user){
 //            dump('mama existe');
@@ -116,17 +116,15 @@ class AccountEventsSubscriber implements EventSubscriberInterface
             $em->persist($data);
             $em->flush();
 
-//            dump($data);
-//            exit;
+            $emailTemplate = $this->twig->render('emailing/account.password.forgot.html.twig', [
+                'token' => $data->getToken()
+            ]);
 
             $message = (new \Swift_Message("objet du message Reinitialisation"))
                 ->setFrom('contact@website.com')
                 ->setTo($event->getPostData()->getUserEmail())
-                ->setBody('<h1 style="color:red;">Bienvenue'
-                    . "dsgdsgfdfg"
-                    . '</h1><div> 
-                    . $event->getPostData()->setToken($token)</div>',
-                    'text/html'
+                ->setBody(
+                    $emailTemplate, 'text/html'
                 )
             ;
 

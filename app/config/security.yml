@@ -32,7 +32,7 @@ security:
             cost: 12
         #cryptage pour le mot de passe des users
         AppBundle\Entity\User:
-              algorithm: bcrypt
+            algorithm: bcrypt
 
     # role_hierarchy : clé hérite des privilèges de la valeur
     #par ex. ROLE_ADMIN hérite de ROLE_USER

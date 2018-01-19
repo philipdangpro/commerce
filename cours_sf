@@ -29,6 +29,10 @@ connaissance
 créer compte github
 créer compte gitlab
 
+écrire des commandes
+écrire des crons
+lire fichier csv
+
 
 \========================================/
 
@@ -885,9 +889,11 @@ configurer l'envt :
   }
 }
 
-composer require knplabs/doctrine-behaviors
-composer require beberlei/DoctrineExtensions
-composer require doctrine/data-fixtures
+composer require knplabs/doctrine-behaviors TRANSLATABLE + slug
+composer require beberlei/DoctrineExtensions rajouter des fonctions mysql
+composer require doctrine/data-fixtures fixtures
+extension twig pour l'internationalisation
+ajouter faker
 
 Installer doctrine extensions
 	composer require beberlei/DoctrineExtensions
@@ -1098,16 +1104,31 @@ php phpunit-6.5.5.phar --coverage-html couverture
 
 =========================
 NOUVEAU EVENEMENT
+php bin/console debug:event-dispatcher
+
+on utilise les events symfony
 
 
 
 
 
+pas de pbm de sécurité avec un formulaire en plusieurs étaoes 
 
 
+behavior
+=================
+CREATION ROUTE POUR REINITIALISER SON MOT DE PASSE
+
+comment tester l'existence d'une clé dans un tableau récupéré dans le template twig
+on peut utiliser les fonctions twig suivantes : is_defined,exist,is_empty,| keys
 
 
-
-
-
+table de translate
+	utiliser knp doctrine behaviors
+	séparer en 2 tables, l'une suffixée par translation
+	rajouter les traits 
+		use ORMBehaviors\Translatable\Translatable;
+		use ORMBehaviors\Sluggable\Sluggable;
+		use ORMBehaviors\Translatable\Translation;
+	ne pas avoir d'id dans la table de traduction
 

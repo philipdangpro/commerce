@@ -88,5 +88,24 @@ class AccountController extends Controller
         ]);
     }
 
+    public function passwordResetAction(
+        ManagerRegistry $doctrine,
+        Request $request,
+        TranslatorInterface $translator,
+        EventDispatcherInterface $dispatcher
+    )
+    {
+        $entity = new User();
+        $type = User::class;
+        $form = $this->createForm($type, $entity);
+
+        $form->handleRequest($request);
+        //si la page est soumise, on exécute les actions suivantes
+
+        if($form->isSubmitted() && $form->isValid()){
+            
+        }
+    }
+
 
 }
