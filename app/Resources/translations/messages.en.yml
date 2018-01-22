@@ -14,4 +14,7 @@ flash_message:
 admin:
     dashboard:
         title: Dashboard
-
+email:
+    reinit: Reset your password
+    first_options: Enter your new password
+    second_options: Confirm password

@@ -17,6 +17,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use AppBundle\Entity\UserToken;
 use AppBundle\Form\UserTokenType;
 use AppBundle\Events\AccountForgotPasswordEvent;
+use AppBundle\Form\UserPasswordReinitType;
 
 class AccountController extends Controller
 {
@@ -72,7 +73,12 @@ class AccountController extends Controller
         $form->handleRequest($request);
         //si la page est soumise, on exécute les actions suivantes
 
+//        dump($form->getData());
+
+        $token = $form->getData()->setToken(bin2hex(random_bytes(8)));
+
         if($form->isSubmitted() && $form->isValid()){
+
             //on renvoie un message de succès ANYWAY
             $this->addFlash('notice', $translator->trans('flash_message.password_forgot.success'));
 
@@ -81,31 +87,53 @@ class AccountController extends Controller
             $event->setPostData($form->getData());
             $dispatcher->dispatch(AccountEvents::PASSWORD_FORGOT, $event);
 
+            //init token
+//            dump($form->getData());
+//            die('rr');
+//            $token = $form->getData()->getToken();
+
         }
 
         return $this->render('account/password.forgot.html.twig', [
             'form' => $form->createView()
+//            ,'token' => $token
         ]);
     }
+
+    /**
+     * @Route("reinit-password/{token}",name="account.password.reset")
+     */
 
     public function passwordResetAction(
         ManagerRegistry $doctrine,
         Request $request,
         TranslatorInterface $translator,
-        EventDispatcherInterface $dispatcher
+        EventDispatcherInterface $dispatcher,
+        $token
     )
     {
         $entity = new User();
-        $type = User::class;
+        $type = UserPasswordReinitType::class;
         $form = $this->createForm($type, $entity);
-
-        $form->handleRequest($request);
-        //si la page est soumise, on exécute les actions suivantes
+//
+//
+//        $form->handleRequest($request);
+//        //si la page est soumise, on exécute les actions suivantes
+//
+//        if($form->isSubmitted() && $form->isValid()){
+//
+//        }
 
         if($form->isSubmitted() && $form->isValid()){
-            
+
         }
+
+        return $this->render('account/reinit.password.html.twig', [
+            'form' => $form->createView()
+        ]);
+
     }
+
 
 
 }

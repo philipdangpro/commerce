@@ -61,6 +61,8 @@ class AccountEventsSubscriber implements EventSubscriberInterface
 
         $emailTemplate = $this->twig->render('emailing/account.create.html.twig', [ 'data' => $event->getUser()]);
 
+
+
         $message = (new \Swift_Message("objet du message"))
             //c'est le site qui envoie le mail
             ->setFrom('contact@website.com')
@@ -85,24 +87,26 @@ class AccountEventsSubscriber implements EventSubscriberInterface
     public function passwordForgot (AccountForgotPasswordEvent $event)
     {
         //tester l'existence de l'email dans la base
-//        dump($event->getPostData());
-//        dump($event->getPostData()->getUserEmail());exit;
         $user = $this->doctrine
             ->getRepository(User::class)
             ->findOneBy(['email' => $event->getPostData()->getUserEmail()])
         ;
 
-
-
         $now = new \Datetime();
-//        if(date_diff($now, $tom)->format('%d')){
-//            var_dump(date_diff($now, $tom)->format('%d day et %h hour') . ' de différence');
+//        dump($event->getPostData()->getUserEmail());die;
+
+        $userToken = $this->doctrine
+            ->getRepository(UserToken::class)
+            ->findOneBy(['userEmail' => $event->getPostData()->getUserEmail()])
+        ;
+
+//        if($userToken){
+//            $this->doctrine->getManager()->remove($userToken);
+//            $this->doctrine->getManager()->flush();
 //        }
 
 
-
-        if ($user){
-//            dump('mama existe');
+        if ($user && !$userToken){
             $data = $event->getPostData();
             //init token
             $token = bin2hex(random_bytes(10));

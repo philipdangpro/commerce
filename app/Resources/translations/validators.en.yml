@@ -3,3 +3,4 @@ password: Password is empty
 email:
     notblank: Email is empty
     incorrect: Email is incorrect
+

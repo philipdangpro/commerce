@@ -16,3 +16,8 @@ flash_message:
     password_forgot:
         success: A reset password email has been sent to you
         failure: An error occured, please contact your administrator
+
+email:
+    reinit: Réinitialiser votre mot de passe
+    first_options: Saisissez votre nouveau mot de passe
+    second_options: Confirmez le nouveau mot de passe
