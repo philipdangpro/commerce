@@ -2,13 +2,13 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\EventSubscriber\UserTypeSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
@@ -19,13 +19,15 @@ use Symfony\Component\Form\FormEvent;
 class UserType extends AbstractType
 {
     //injecter la Request Stack
+    private $requestStack;
     private $request;
 
     // masterRequest : cibler la requête principale
-    public function __construct(RequestStack $request )
+    public function __construct(RequestStack $requestStack)
     {
-        $this->request = $request->getMasterRequest();
-        dump($this->request->get('_route'));
+        $this->requestStack = $requestStack;
+        $this->request = $requestStack->getMasterRequest();
+
     }
 
     /**
@@ -80,6 +82,7 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('country', CountryType::class, [
+                'placeholder' => '',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'pays vide'
@@ -92,6 +95,11 @@ class UserType extends AbstractType
          * listener : écouter un seul événement
          * subscriber :écouter plusieurs événéments
          */
+
+        //subscriber
+        $subscriber = new UserTypeSubscriber($this->requestStack);
+        $builder->addEventSubscriber($subscriber);
+
 
         // écouteur
         $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event){
@@ -112,7 +120,6 @@ class UserType extends AbstractType
                 $data = $event->getData();
                 //formulaire
                 $form = $event->getForm();
-
                 //données du formulaire
                 $entity = $form->getData();
 

@@ -60,7 +60,7 @@ private $address;
 private $zipcode;
 
 /**
- * @ORM\Column(type="string", length=5, nullable=true)
+ * @ORM\Column(type="string", length=50, nullable=true)
  */
 private $city;
 

@@ -1,17 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'profile/base.profile.html.twig' %}
 
-{% block body %}
+{% block colright %}
     <div class="row my-4">
         <div class="col">
             <h1 class="mb-4">Profil</h1>
             <p>Bonjour {{ app.user.username }}</p>
+            {% include 'inc/flash.message.html.twig' %}
             <p>il est {{ "now" | date("H:i:s d/m/Y")}}</p>
         </div>
     </div>
-
-
-
-
 {% endblock %}
-
-{% block stylesheets %}{% endblock %}

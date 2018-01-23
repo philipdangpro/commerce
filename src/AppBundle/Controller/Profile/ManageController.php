@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Form\UserType;
 
 /**
  * @Route("/profile")
@@ -20,11 +21,29 @@ class ManageController extends Controller
     /**
      * @Route("/manage", name="profile.manage.index")
      */
-    public function indexAction():Response
+    public function indexAction(Request $request, ManagerRegistry $doctrine):Response
     {
-        return $this->render('profile/manage/index.html.twig',[
+        $user = $this->getUser();
+//        dump($user);
 
+        //formulaire
+        $type = UserType::class;
+        $form = $this->createForm($type, $user);
+        $form->handleRequest($request);
+
+        //formulaire valide
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+            $doctrine->getManager()->persist($data);
+            $doctrine->getManager()->flush();
+            $this->addFlash('notice','Votre profil a été modifié');
+          return $this->redirectToRoute('profile.homepage.index');
+        }
+
+        return $this->render('profile/manage/index.html.twig',[
+            'form' => $form->createView()
         ]);
+
     }
 
 

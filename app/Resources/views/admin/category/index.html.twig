@@ -1,0 +1,30 @@
+{% extends 'admin/base.admin.html.twig' %}
+
+{% block colright %}
+    <h1 class="mb-4">Catégorie | administrateur</h1>
+    <h2>liste des catégories</h2>
+
+    <table class="table table-stripped">
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+
+        {{ dump(results) }}
+
+        {% for result in results %}
+            <tr>
+                <td>{{ result.translations[app.request.locale].name }}</td>
+                <td>{{ result.translations[app.request.locale].description }}</td>
+                <td><a href="#" class="btn btn-warning">Modifier</a></td>
+                <td><a href="#" class="btn btn-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}

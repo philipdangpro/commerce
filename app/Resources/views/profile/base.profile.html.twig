@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-4 my-4">
+            <p><a href="{{ url('profile.homepage.index') }}" class="btn btn-info">Accueil</a></p>
+            <p><a href="{{ url('profile.manage.index') }}" class="btn btn-info">vers modifier</a></p>
+
+        </div>
+
+        <div class="col-sm-8 my-4">
+            {% block colright %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
