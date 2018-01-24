@@ -50,12 +50,16 @@ services:
 
     # injecter des services dans les classes Doctrine
     # propriété arguments : arguments du constructeur de la classe
-    # cibler un service par spn identifiant précédé d'un @ (liste des services: debug:container)
+    # cibler un service par son identifiant précédé d'un @ (liste des services: debug:container)
     # tags/name: définir le type de service
     AppBundle\EventListener\UserEntityListener:
         arguments:
             $encoder: '@security.password_encoder'
         tags:
+            name: doctrine.orm.entity_listener
+    AppBundle\EventListener\ProductEntityListener:
+        tags:
+        #nom important
             name: doctrine.orm.entity_listener
 
     # le subscriber reçoit un paramètre
@@ -65,6 +69,9 @@ services:
         arguments:
           $maxAuthenticationFailure: '%max_authentication_failure%'
 
-    AppBundle\Form\Category
+    AppBundle\Form\CategoryType:
+        arguments:
+          $locales: '%locales%'
+    AppBundle\Form\ProductType:
         arguments:
           $locales: '%locales%'

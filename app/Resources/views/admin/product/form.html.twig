@@ -1,19 +1,32 @@
 {% extends 'admin/base.admin.html.twig' %}
 
 {% block colright %}
-    <h1 class="mb-4">Catégories</h1>
-
+    <h1 class="mb-4">Produits add ou modifier</h1>
+    {% include 'inc/flash.message.html.twig' %}
     {{ form_start(form, {'attr' : {'novalidate' : 'novalidate'}}) }}
-
-
-    {#<ul class="nav nav-tabs">#}
-        {#<li class="nav-item">#}
-            {#<a class="nav-link active" href="#">FR</a>#}
-        {#</li>#}
-        {#<li class="nav-item">#}
-            {#<a class="nav-link" href="#">EN</a>#}
-        {#</li>#}
-    {#</ul>#}
+<p>
+    {{ form_label(form.price, 'Price') }}
+    {{ form_widget(form.price) }}
+    {{ form_errors(form.price) }}
+</p>
+    <p>
+        {{ form_label(form.image, 'Image') }}
+        {{ form_widget(form.image) }}
+        {{ form_errors(form.image) }}
+    </p>
+    <p>
+        {{ form_label(form.stock, 'Stock') }}
+        {{ form_widget(form.stock) }}
+        {{ form_errors(form.stock) }}
+    </p>
+    <p>
+        {{ form_label(form.category, 'category') }}
+        {{ form_widget(form.category) }}
+        {{ form_errors(form.category) }}
+    </p>
+    <br>
+    <br>
+    <br>
 
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">

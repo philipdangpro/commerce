@@ -35,7 +35,7 @@ class UserEntityListener
      *     - argument différent selon l'événement écouté
      */
     public function prePersist(User $user, LifecycleEventArgs $args){
-        // récupếration du mot de passe en clair
+        // récuperation du mot de passe en clair
         $plainPassword = $user->getPassword();
 
         //encodage

@@ -1,0 +1,36 @@
+{% extends 'admin/base.admin.html.twig' %}
+
+{% block colright %}
+
+    <h1 class="mb-4">Produit | administrateur</h1>
+    <h2>liste des Produits</h2>
+    {% include 'inc/flash.message.html.twig' %}
+    <table class="table table-stripped">
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Catégorie</th>
+            <th>Image</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+
+        {#{{ dump(results.1.category.id) }}#}
+        {#{{ dump(results.0) }}#}
+
+        {% for result in results %}
+            <tr>
+                <td>{{ result.translations[app.request.locale].name }}</td>
+                <td>{{ result.translations[app.request.locale].description }}</td>
+                <td>{{ result.category.translations[app.request.locale].name}}</td>
+                <td><img src="{{ asset(result.image) }}" alt="{{ result.translations[app.request.locale].name }}"><span>{{ asset(result.image) }}</span></td>
+                <td><a href="{{ url('admin.product.update', {'id' : result.id}) }}" class="btn btn-warning">Modifier</a></td>
+                <td><a href="{{ url('admin.product.delete', {'id' : result.id})  }} " class="btn btn-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}

@@ -18,8 +18,8 @@
             <tr>
                 <td>{{ result.translations[app.request.locale].name }}</td>
                 <td>{{ result.translations[app.request.locale].description }}</td>
-                <td><a href="#" class="btn btn-warning">Modifier</a></td>
-                <td><a href="#" class="btn btn-danger">Supprimer</a></td>
+                <td><a href="{{ url('admin.category.update', {'id' : result.id}) }}" class="btn btn-warning">Modifier</a></td>
+                <td><a href="{{ url('admin.category.delete', {'id' : result.id})  }} " class="btn btn-danger">Supprimer</a></td>
             </tr>
         {% endfor %}
     </table>

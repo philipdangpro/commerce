@@ -5,7 +5,7 @@
         <title>{% block title %}Commerce!{% endblock %}</title>
         {#<link rel="stylesheet" href="{{ asset('css/reset.css') }}">#}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/font-awesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/fontawesome-all.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -14,7 +14,7 @@
             {% block body %}{% endblock %}
         </div>
         <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>
-        <script src="{{ asset('js/popper.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
 
         {% block javascripts %}{% endblock %}

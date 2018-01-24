@@ -37,7 +37,7 @@ class CategoryFixtures extends Fixture
 
                 $description = $faker->realText();
 
-                // méthode translate est fourni par doctrine behaviors
+                // méthode translate est fourni par DOCTRINE BEHAVIORS
                 $entity->translate($key)->setName($name . $i);
                 $entity->translate($key)->setDescription($description);
             }
