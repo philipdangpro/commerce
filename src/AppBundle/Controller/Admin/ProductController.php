@@ -42,8 +42,6 @@ class ProductController extends Controller
             $data->getImage()->move('img/product', 'PDA' . $filename . ".jpg");
 
 //            'img/product', $data->getImage()->getClientOriginalName()
-            dump($data);
-//            exit;
 //            $data->toto = 'img/product/' . $filename . '.jpg';
 
             $data->setImage('img/product/PDA' . $filename . ".jpg");
