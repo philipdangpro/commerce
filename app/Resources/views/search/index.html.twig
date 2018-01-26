@@ -1,0 +1,53 @@
+{% extends 'base.html.twig'%}
+
+{% block javascripts %}
+    <script src="{{ asset('js/searchResults.js') }}"></script>
+    <script src="{{ asset('js/switchCurrency.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    {% if currency is defined %}
+    {{ dump(currency.rate) }}
+        {{ dump(app.session.get('rate')) }}
+    {% endif %}
+
+    <div class="row my-4">
+        <div class="col-sm-12 currencies">
+            {#<form action="">#}
+                <span class="btn btn-info active" data-currency="EUR"><label for="currency-EUR"><span><i class="fas fa-euro-sign"></i></span></label></span>
+                <span class="btn btn-info" data-currency="USD"><label for="currency-USD"><span><i class="fas fa-dollar-sign"></i></span></label></span>
+                <span class="btn btn-info" data-currency="GBP"><label for="currency-GBP"><span><i class="fas fa-pound-sign"></i></span></label></span>
+                <span class="btn btn-info" data-currency="TRY"><label for="currency-TRY"><span><i class="fas fa-lira-sign"></i></span></label></span>
+            {#</form>#}
+        </div>
+    </div>
+    <div class="row my-4 search-results">
+        <div class="col-sm-4 btn-group" data-toggle="buttons">
+            <h5>Catégories</h5>
+            <form action="" method="post">
+                {% if categories is defined %}
+                {% for category in categories %}
+                    <p>
+
+                        <label class="btn btn-primary" for="radio-category-{{ category.id }}"><input type="radio" value="{{ category.id }}" name="select-category" id="radio-category-{{ category.id }}"><span>{{ category.translations[app.request.locale].name  | capitalize }}</span></label>
+                    </p>
+                {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+        <div class="col-sm-8">
+            {% if products is defined %}
+                {% for product in products %}
+                    <div class="row my-2">
+                        <div class="col-sm-2"><img src="{{  asset('img/product/' ~ product.image)  }}" alt="" class="img-fluid"></div>
+                        <div class="col-sm-8">{{ product.translations[app.request.locale].name  | capitalize }}</div>
+                        <div class="col-sm-2">{{ product.price | localizedcurrency('EUR')}}</div>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

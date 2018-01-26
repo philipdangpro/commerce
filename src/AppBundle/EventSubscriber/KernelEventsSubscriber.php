@@ -61,7 +61,7 @@ class KernelEventsSubscriber implements EventSubscriberInterface
 
         $sessionValue = $this->session->get('cookieDisclaimer');
 
-        dump($sessionValue);
+//        dump($sessionValue);
 
         if($sessionValue === true ){
             $toto = '<div class="alert alert-warning alert-dismissible" role="alert">
