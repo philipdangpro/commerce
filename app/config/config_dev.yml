@@ -41,7 +41,7 @@ monolog:
 #    delivery_addresses: ['me@example.com']
 #c'est l'adresse qu'on active en mode développement
 swiftmailer:
-    delivery_addresses: ['22f484ffb1-7034e3@inbox.mailtrap.io']
+    delivery_addresses: ['22f484ffb1-7034e3@inbox.mailtrap.io', 'philip.dang.pro@gmail.com']
     spool:     { type: memory }
     transport: smtp
     host:      smtp.mailtrap.io

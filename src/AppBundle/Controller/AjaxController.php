@@ -2,10 +2,6 @@
 
 namespace AppBundle\Controller;
 
-//use AppBundle\Entity\Category;
-//use AppBundle\Entity\Product;
-//use Doctrine\Common\Persistence\ManagerRegistry;
-//use MongoDB\Driver\Manager;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Currency;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -34,12 +30,14 @@ class AjaxController extends Controller
     public function searchAction(ManagerRegistry $doctrine, Request $request)//:Response
     {
         //récupération de la variable POST envoyée en JS
-        $selectValue = $request->get('selectValue');
+//        if($request->has('selectValue')){
+            $selectValue = $request->get('selectValue');
 
-        //produits de la catégorie
-        $category = $doctrine
-            ->getRepository(Category::class)
-            ->find($selectValue);
+            //produits de la catégorie
+            $category = $doctrine
+                ->getRepository(Category::class)
+                ->find($selectValue);
+
 
         //supprimer les références circulaires avec les propriétés bidirectionnelles
         $objectNormalizer = new ObjectNormalizer();
@@ -68,7 +66,7 @@ class AjaxController extends Controller
 //        return $this->render($htmlDejaRegenere);
 
         return $response;
-
+//        }
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Currency;
 
 /**
  * CurrencyRepository
@@ -10,4 +11,30 @@ namespace AppBundle\Repository;
  */
 class CurrencyRepository extends \Doctrine\ORM\EntityRepository
 {
+    //mise à jour des taux avec la commande
+    public function updateExchangeRate($rates)
+    {
+
+        $results = [];
+
+        foreach ($rates as $key => $value){
+            $results[] = $this
+                ->getEntityManager()
+                ->createQueryBuilder()
+                ->update(Currency::class, 'exchangeRate')
+                ->set('exchangeRate.rate' , ':value') //on écrit comme ça car c'est un objet
+                ->where('exchangeRate.base = :currency')
+                ->setParameters([
+                    'value' => $value,
+                    'currency' => $key
+
+                ])
+                ->getQuery()
+                ->execute()
+            ;
+        }
+
+        return count($results);
+    }
+
 }

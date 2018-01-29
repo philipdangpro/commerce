@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\UserToken;
+
 /**
  * UserTokenRepository
  *
@@ -10,4 +12,16 @@ namespace AppBundle\Repository;
  */
 class UserTokenRepository extends \Doctrine\ORM\EntityRepository
 {
+    //mise à jour des taux avec la commande
+    public function deleteExpiredTokens()
+    {
+        $results = $this
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->delete(UserToken::class, 'usertoken')
+            ->where('usertoken.expirationDate < NOW()')
+            ->getQuery()
+            ->execute();
+    }
+
 }
