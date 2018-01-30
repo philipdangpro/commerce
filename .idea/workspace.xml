@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f1d9c150-4a1a-442a-9d4d-fdb48a1455fe" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/inc/nav.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/inc/nav.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/SearchController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/SearchController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/ProductRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/ProductRepository.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,14 +21,14 @@
     <favorites_list name="commerce" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.8957871">
+    <splitter split-orientation="vertical" split-proportion="0.35144123">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="security.yml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/config/security.yml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="111">
-                  <caret line="53" column="14" lean-forward="true" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+                <state relative-caret-position="128">
+                  <caret line="69" column="40" lean-forward="false" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
                   <folding />
                 </state>
               </provider>
@@ -45,7 +47,7 @@
           <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-340">
+                <state relative-caret-position="119">
                   <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
                   <folding />
                 </state>
@@ -55,7 +57,7 @@
           <file leaf-file-name="services.yml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/config/services.yml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="465">
+                <state relative-caret-position="1411">
                   <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
                   <folding />
                 </state>
@@ -96,11 +98,44 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="mysqldump.html.twig" pinned="false" current-in-tab="true">
+          <file leaf-file-name="mysqldump.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/command/mysqldump.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
+                <state relative-caret-position="8">
                   <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="nav.html.twig" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Resources/views/inc/nav.html.twig">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="221">
+                  <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SearchController.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SearchController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+                  <folding>
+                    <element signature="e#40#70#0#PHP" expanded="true" />
+                    <element signature="e#1371#1395#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ProductRepository.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ProductRepository.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="260">
+                  <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -121,6 +156,7 @@
       <find>dump</find>
       <find>.search-results</find>
       <find>maint</find>
+      <find>sea</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,8 +165,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/views/profile/manage/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/UserType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/EventSubscriber/UserTypeSubscriber.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Profile/ManageController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/profile/homepage/index.html.twig" />
@@ -155,7 +189,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Admin/ProductController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/web/js/cookies-disclaimer.js" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/SearchController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/EventSubscriber/KernelEventsSubscriber.php" />
         <option value="$PROJECT_DIR$/web/docs/README-currencies-selector.md" />
         <option value="$PROJECT_DIR$/web/js/searchResults.js" />
@@ -180,6 +213,9 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/CategoryRepository.php" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
+        <option value="$PROJECT_DIR$/app/Resources/views/inc/nav.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/ProductRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/SearchController.php" />
       </list>
     </option>
   </component>
@@ -198,9 +234,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="47" />
-    <option name="y" value="24" />
-    <option name="width" value="1180" />
+    <option name="x" value="785" />
+    <option name="y" value="62" />
+    <option name="width" value="1135" />
     <option name="height" value="1008" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -221,6 +257,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -237,25 +274,52 @@
               <item name="commerce" type="b2602c69:ProjectViewProjectNode" />
               <item name="commerce" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="commerce" type="b2602c69:ProjectViewProjectNode" />
+              <item name="commerce" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="commerce" type="b2602c69:ProjectViewProjectNode" />
+              <item name="commerce" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="inc" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="commerce" type="b2602c69:ProjectViewProjectNode" />
               <item name="commerce" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="commerce" type="b2602c69:ProjectViewProjectNode" />
+              <item name="commerce" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="commerce" type="b2602c69:ProjectViewProjectNode" />
+              <item name="commerce" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
-    <property name="SearchEverywhereHistoryKey" value="Currenc&#9;FILE&#9;file:///home/wabap2-14/Bureau/commerce/src/AppBundle/Entity/Currency.php&#10;base&#9;FILE&#9;file:///home/wabap2-14/Bureau/commerce/app/Resources/views/base.html.twig&#10;addFlash&#9;null&#9;null&#10;AUTHENTICATION_FAILURE&#9;null&#9;null&#10;realText&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="Searc&#9;FILE&#9;file:///home/wabap2-14/Bureau/commerce/src/AppBundle/Controller/SearchController.php&#10;Currenc&#9;FILE&#9;file:///home/wabap2-14/Bureau/commerce/src/AppBundle/Entity/Currency.php&#10;base&#9;FILE&#9;file:///home/wabap2-14/Bureau/commerce/app/Resources/views/base.html.twig&#10;addFlash&#9;null&#9;null&#10;AUTHENTICATION_FAILURE&#9;null&#9;null&#10;realText&#9;null&#9;null" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
@@ -312,26 +376,28 @@
       <workItem from="1516954372914" duration="16298000" />
       <workItem from="1516974212510" duration="8251000" />
       <workItem from="1517214133249" duration="22818000" />
-      <workItem from="1517299949343" duration="5949000" />
+      <workItem from="1517299949343" duration="6628000" />
+      <workItem from="1517318101839" duration="2415000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285975000" />
+    <option name="totallyTimeSpent" value="289069000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="47" y="24" width="1180" height="1008" extended-state="0" />
+    <frame x="785" y="62" width="1135" height="1008" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21525423" sideWeight="0.6773836" order="1" side_tool="true" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15154184" sideWeight="0.68070954" order="1" side_tool="true" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21525423" sideWeight="0.3226164" order="2" side_tool="false" content_ui="tabs" x="393" y="112" width="299" height="942" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15154184" sideWeight="0.31929046" order="2" side_tool="false" content_ui="tabs" x="393" y="112" width="299" height="942" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25707155" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25707155" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -357,14 +423,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/ControllerTrait.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="199" column="48" lean-forward="false" selection-start-line="199" selection-start-column="48" selection-end-line="199" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Session/Flash/FlashBagInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-192">
@@ -418,14 +476,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ProductRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -510,7 +560,7 @@
         <state relative-caret-position="476">
           <caret line="28" column="7" lean-forward="false" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
           <folding>
-            <element signature="e#40#70#0#PHP" expanded="true" />
+            <element signature="e#40#70#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -540,16 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SearchController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#803#827#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -673,7 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -686,7 +725,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/command/mysqldump.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="8">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
@@ -704,7 +743,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
+        <state relative-caret-position="1411">
           <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
         </state>
@@ -712,7 +751,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
+        <state relative-caret-position="119">
           <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
         </state>
@@ -744,9 +783,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="53" column="14" lean-forward="true" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+        <state relative-caret-position="128">
+          <caret line="69" column="40" lean-forward="false" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/inc/nav.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ProductRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SearchController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+          <folding>
+            <element signature="e#40#70#0#PHP" expanded="true" />
+            <element signature="e#1371#1395#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

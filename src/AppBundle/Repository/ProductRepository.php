@@ -10,6 +10,27 @@ namespace AppBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getSearchResults(string $locale, string $search):array
+    {
+        $results = $this
+            ->createQueryBuilder('product')
+            ->join('product.translations', 'translations')
+            ->where('translations.locale = :locale')
+            ->andWhere('translations.name LIKE :search OR translations.description LIKE :search')
+            ->setParameters([
+                'locale' => $locale,
+                'search' => "%$search%"
+            ])
+            ->getQuery()
+//            ->getSQL()
+            ->getResult()
+        ;
+
+        return $results;
+
+    }
+
     public function getNRandomProductsByCategory($locale)
     {
         //la zone de suggestion affiche trois produits aléatoires
