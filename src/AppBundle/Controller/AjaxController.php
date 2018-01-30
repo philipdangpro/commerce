@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Currency;
+use AppBundle\Entity\Product;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,6 +24,27 @@ use Symfony\Component\Serializer\Serializer;
 
 class AjaxController extends Controller
 {
+    /**
+     * @Route("/datalist", name="ajax.datalist")
+     */
+    public function datalistAction(Request $request, ManagerRegistry $doctrine):JsonResponse
+    {
+        //récupération de la saisie
+        $searchValue = $request->get('selectValue');
+        $locale = $request->getLocale();
+        //recherche
+        $products = $doctrine
+            ->getRepository(Product::class)
+            ->getNameBySearchResults($locale, $searchValue)
+            ;
+
+        // attention, json_encode ne peut pas encoder des objets
+        $response = new JsonResponse($products);
+        return $response;
+    }
+
+
+
 
     /**
      * @Route("/search", name="ajax.search")

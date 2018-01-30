@@ -24,7 +24,8 @@
                     </li>
                     <li class="nav-item">
                         <form class="form-inline my-2 my-lg-0" action="{{ url('search.index') }}" method='post'>
-                            <input class="form-control mr-sm-2" type="search" name="search">
+                            <input class="form-control mr-sm-2 input-search" type="search" name="search" list="datalist-search">
+                            <datalist id="datalist-search"></datalist>
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </li>

@@ -10,6 +10,29 @@ namespace AppBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNameBySearchResults(string $locale, string $search):array
+    {
+        $results = $this->createQueryBuilder('product')
+            ->select('translations.name')
+            ->join('product.translations', 'translations')
+            ->where('translations.locale = :locale')
+            ->andWhere('translations.name LIKE :search OR translations.description LIKE :search')
+            ->setParameters([
+                'locale' => $locale,
+                'search' => "%$search%"
+            ])
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $results;
+    }
+
+
+
+
+
+
 
     public function getSearchResults(string $locale, string $search):array
     {

@@ -3,6 +3,7 @@
 {% block javascripts %}
     <script src="{{ asset('js/searchResults.js') }}"></script>
     <script src="{{ asset('js/switchCurrency.js') }}"></script>
+    <script src="{{ asset('js/searchResultsNav.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -38,14 +39,18 @@
         </div>
         <div class="col-sm-8">
             {% if products is defined %}
-                {% for product in products %}
-                    <div class="row my-2">
-                        <div class="col-sm-2"><img src="{{  asset('img/product/' ~ product.image)  }}" alt="" class="img-fluid"></div>
-                        <div class="col-sm-8">{{ product.translations[app.request.locale].name  | capitalize }}</div>
-                        <div class="col-sm-2">{{ product.price | localizedcurrency('EUR')}}</div>
-                    </div>
+                {% if products %}
+                    {% for product in products %}
+                        <div class="row my-2">
+                            <div class="col-sm-2"><img src="{{  asset('img/product/' ~ product.image)  }}" alt="" class="img-fluid"></div>
+                            <div class="col-sm-8">{{ product.translations[app.request.locale].name  | capitalize }}</div>
+                            <div class="col-sm-2">{{ product.price | localizedcurrency('EUR')}}</div>
+                        </div>
 
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <p class="alert alert-warning">Il n'y a pas de résultats.</p>
+                {% endif %}
             {% endif %}
 
         </div>

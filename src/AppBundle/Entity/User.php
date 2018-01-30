@@ -10,6 +10,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
 * @ORM\EntityListeners({"AppBundle\EventListener\UserEntityListener"})
 */
+
+
+
 class User implements UserInterface
 {
     /**
